@@ -1,9 +1,8 @@
 import React from 'react';
-import { Router, Switch, Route, Link } from 'react-router-dom';
 import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
-import SuspenseLoad from './component/common/SuspenseLoad';
 import configs from './configs';
 import { getRootStore } from './util/common';
+import Page from './page/Index';
 
 function getHistory(routerHistoryType) {
   if (routerHistoryType === 'hash')
@@ -17,32 +16,11 @@ const routingStore = new RouterStore();
 const plainHistory = getHistory(configs.routerHistoryType);
 const history = syncHistoryWithStore(plainHistory, routingStore);
 const rootStore = getRootStore();
+
 rootStore.router.setHistory(history);
 
 function App() {
-  return (
-    <Router history={history}>
-      <nav>
-        <p>
-          <Link to="/">/home</Link>
-        </p>
-        <p>
-          <Link to="/test">/test</Link>
-        </p>
-        <p>
-          <Link to="/test/test1">/test/test1</Link>
-        </p>
-      </nav>
-      <Switch>
-        <Route path="/test">
-          <SuspenseLoad>{() => import('./page/Test')}</SuspenseLoad>
-        </Route>
-        <Route path="/">
-          <SuspenseLoad>{() => import('./page/Home')}</SuspenseLoad>
-        </Route>
-      </Switch>
-    </Router>
-  );
+  return <Page history={history} />;
 }
 
 export default App;

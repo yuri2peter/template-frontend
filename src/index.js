@@ -1,16 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import * as serviceWorker from './serviceWorker';
 import RootStore from './store/root';
 
 RootStore.init();
+const App = React.lazy(() => import('./App'));
 
 ReactDOM.render(
-  <React.StrictMode>
+  <React.Suspense fallback={null}>
     <App />
-  </React.StrictMode>,
+  </React.Suspense>,
   document.getElementById('root')
 );
 
