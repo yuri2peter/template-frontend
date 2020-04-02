@@ -5,20 +5,23 @@ import SuspenseLoad from '../component/common/SuspenseLoad';
 function Page({ history }) {
   return (
     <Router history={history}>
-      <nav>
-        <p>
+      <ul>
+        <li>
           <Link to="/">/home</Link>
-        </p>
-        <p>
-          <Link to="/test">/test</Link>
-        </p>
-        <p>
-          <Link to="/test/test1">/test/test1</Link>
-        </p>
-      </nav>
+        </li>
+        <li>
+          <Link to="/demo">/demo</Link>
+        </li>
+        <li>
+          <Link to="/demo/demo1">/demo/demo1</Link>
+        </li>
+        <li>
+          <Link to="/demo/demo2">/demo/demo2</Link>
+        </li>
+      </ul>
       <Switch>
-        <Route path="/test">
-          <SuspenseLoad>{() => import('./Test')}</SuspenseLoad>
+        <Route path="/demo">
+          <SuspenseLoad>{() => import('./Demo')}</SuspenseLoad>
         </Route>
         <Route path="/">
           <SuspenseLoad>{() => import('./Home')}</SuspenseLoad>

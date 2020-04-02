@@ -1,6 +1,12 @@
 // 展示组件
 import React from 'react';
+import { createUseStyles } from 'react-jss';
+
+const useStyles = createUseStyles({
+  root: { color: 'green' },
+});
 
 export default () => {
-  return <div>Presentationals</div>;
+  const classes = useStyles();
+  return <div className={classes.root}>Presentationals</div>;
 };

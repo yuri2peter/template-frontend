@@ -352,6 +352,10 @@ module.exports = function (webpackEnv) {
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
             {
+              test: /\.worker\.js$/, //以.worker.js结尾的文件将被worker-loader加载
+              loader: require.resolve('worker-loader'),
+            },
+            {
               test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
               loader: require.resolve('url-loader'),
               options: {

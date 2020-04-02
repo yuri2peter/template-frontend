@@ -1,6 +1,6 @@
 - ~~router~~
 - ~~rootStore~~
-- mobx
+- ~~mobx~~
 - websocket
 - worker
 - event
