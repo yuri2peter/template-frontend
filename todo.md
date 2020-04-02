@@ -1,5 +1,5 @@
-router
-mobx
-websocket
-worker
-event
+- ~~router~~
+- mobx
+- websocket
+- worker
+- event

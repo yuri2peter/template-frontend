@@ -1,25 +1,47 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Router, Switch, Route, Link } from 'react-router-dom';
+import { RouterStore, syncHistoryWithStore } from 'mobx-react-router';
+import SuspenseLoad from './component/common/SuspenseLoad';
+import configs from './configs';
+import { getRootStore } from './util/common';
+
+function getHistory(routerHistoryType) {
+  if (routerHistoryType === 'hash')
+    return require('history').createHashHistory();
+  if (routerHistoryType === 'memory')
+    return require('history').createMemoryHistory();
+  return require('history').createBrowserHistory();
+}
+
+const routingStore = new RouterStore();
+const plainHistory = getHistory(configs.routerHistoryType);
+const history = syncHistoryWithStore(plainHistory, routingStore);
+const rootStore = getRootStore();
+rootStore.router.setHistory(history);
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
+    <Router history={history}>
+      <nav>
         <p>
-          Edit <code>src/App.js</code> and save to reload.
+          <Link to="/">/home</Link>
         </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+        <p>
+          <Link to="/test">/test</Link>
+        </p>
+        <p>
+          <Link to="/test/test1">/test/test1</Link>
+        </p>
+      </nav>
+      <Switch>
+        <Route path="/test">
+          <SuspenseLoad>{() => import('./page/Test')}</SuspenseLoad>
+        </Route>
+        <Route path="/">
+          <SuspenseLoad>{() => import('./page/Home')}</SuspenseLoad>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
