@@ -1,4 +1,5 @@
 - ~~router~~
+- ~~rootStore~~
 - mobx
 - websocket
 - worker
