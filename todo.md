@@ -2,5 +2,5 @@
 - ~~rootStore~~
 - ~~mobx~~
 - websocket
-- worker
+- ~~worker~~
 - event
