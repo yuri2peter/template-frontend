@@ -1,6 +1,7 @@
 - ~~router~~
 - ~~rootStore~~
 - ~~mobx~~
-- websocket
+- ~~websocket~~
 - ~~worker~~
-- event
+- ~~event~~
+- default styles

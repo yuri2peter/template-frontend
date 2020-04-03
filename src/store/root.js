@@ -1,8 +1,13 @@
+import EventEmitter from 'events';
+
 import Router from './router';
+import WebSocket from './webSocket';
 
 class RootStore {
   constructor() {
+    this.event = new EventEmitter();
     this.router = new Router();
+    this.webSocket = new WebSocket();
   }
 }
 

@@ -6,3 +6,7 @@ import RootStore from 'src/store/root';
 export function getRootStore() {
   return RootStore.getSingleInstance();
 }
+
+export function uuid() {
+  return require('shortid').generate();
+}
