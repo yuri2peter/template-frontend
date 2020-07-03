@@ -3,9 +3,9 @@
 const fs = require('fs-extra');
 const path = require('path');
 const execShPromise = require('exec-sh').promise;
-const { path: targetPath, autoPush } = require('../config/publish');
+const { path: targetPaths, autoPush } = require('../config/publish');
 
-async function main() {
+async function work(targetPath) {
   const buildPath = path.resolve(__dirname, '../build');
 
   console.log('build目录: ' + buildPath);
@@ -56,6 +56,15 @@ async function main() {
     await fs.emptyDir(targetPath);
     await fs.copy(buildPath, targetPath);
     console.log('完成');
+  }
+}
+
+async function main() {
+  const targetPathsResolved = Array.isArray(targetPaths)
+    ? targetPaths
+    : [targetPaths];
+  for (const targetPath of targetPathsResolved) {
+    await work(targetPath);
   }
 }
 
